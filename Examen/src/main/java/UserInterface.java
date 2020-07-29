@@ -85,16 +85,17 @@ public class UserInterface {
         String nombre = scanner.nextLine();
         System.out.print("Ingrese el apellido del pasajero: ");
         String apellido = scanner.nextLine();
-        System.out.println("Ingrese la fila del Asiento ");
+        System.out.print("Ingrese la fila del Asiento: ");
         int fila = Integer.valueOf(scanner.nextLine());
-        System.out.println("Ingrese la columna del Asiento ");
+        System.out.print("Ingrese la columna del Asiento: ");
         String columna = scanner.nextLine();
-//        Seat comparado = new Seat(fila, columna);
-//        int index = avion.getSeats().indexOf(comparado);
-//        System.out.println(index);
-        if (avion.getSeats().get(0).isFree()) {
+       int numCol = convertToNum(columna);
+
+        int index = index(avion, fila, numCol);
+       
+        if (avion.getSeats().get(index).isFree()) {
             Passenger newPasajero = new Passenger(nombre, apellido);
-            avion.getSeats().get(0).setPassenger(newPasajero);
+            avion.getSeats().get(index).setPassenger(newPasajero);
         } else {
             System.out.println("El asiento esta ocupado");
         }
@@ -120,5 +121,32 @@ public class UserInterface {
         
     }
     
+    public int index(Plane avion, int fila, int columna) {
+        int cont = 0;
+        for(int row = 1; row<= avion.getRows() ; row++) {
+            
+            for(int j = 1; j <= avion.getCols(); j++) {
+                if(fila == row && columna == j) {
+                    return cont;
+                }
+                cont++;
+            }
+        }
+        return cont;
+    }
     
+    public int  convertToNum(String letra) {
+        switch(letra) {
+            case"A": return 1;
+            case"B": return 2;
+            case"C": return 3;
+            case"D": return 4;
+            case"E": return 5;
+            case"F": return 6;
+            case"G": return 7;
+            case"H": return 8;
+            
+        }
+        return -1;
+    }
 }

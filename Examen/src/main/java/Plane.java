@@ -70,7 +70,13 @@ public class Plane {
     @Override
     public String toString() {
         //String mapa = "";
-        //agregar
+        
+        for(int i = 0; i < this.rows; i++) {
+            
+            System.out.println(i+1 + "  " + this.seats.get(i).getCol()+ this.seats.get(i+1).getCol()+ this.seats.get(i+2).getCol());
+           
+        }
+        System.out.println();
         return "Falta";
     }
     
